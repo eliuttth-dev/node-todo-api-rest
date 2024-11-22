@@ -1,0 +1,21 @@
+
+1. **Create Tasks**: Add new tasks with a title and description. ✅  
+2. **Read Tasks**: View a list of all tasks with their details.  
+3. **Update Tasks**: Edit the title or description of a task.  
+4. **Delete Tasks**: Remove tasks by their unique identifier.  
+5. **Mark Tasks as Completed**: Toggle a "completed" status for tasks.  
+6. **Add Due Date**: Assign a due date to tasks.  
+7. **Filter by Completion Status**: Show only completed or pending tasks.  
+8. **Sort by Due Date**: Display tasks in ascending or descending order of due date.  
+9. **Prioritize Tasks**: Add a priority level (e.g., low, medium, high) and filter/sort tasks by priority.  
+10. **Task Categorization**: Assign tasks to categories (e.g., "Work," "Personal").  
+11. **Search Tasks**: Search for tasks by keywords in the title or description.  
+12. **Pagination**: Break the task list into pages for easier navigation (e.g., 10 tasks per page).  
+13. **Task History**: Keep a log of updates made to a task (e.g., when it was marked completed).  
+14. **Overdue Tasks Notification**: Highlight tasks that are past their due date.  
+15. **Recurring Tasks**: Allow tasks to repeat daily, weekly, or monthly.  
+16. **User Authentication**: Require users to log in to access their tasks.  
+17. **API Rate Limiting**: Prevent excessive API calls to improve performance.  
+18. **Validation**: Ensure tasks have required fields (e.g., title cannot be empty).  
+19. **API Documentation**: Add simple documentation using a tool like Swagger.  
+20. **Unit Tests**: Write basic tests for the main functionalities (e.g., creating and deleting tasks).  
