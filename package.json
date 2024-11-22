@@ -1,0 +1,24 @@
+{
+  "name": "todo-api-rest",
+  "version": "1.0.0",
+  "main": "src/index.js",
+  "scripts": {
+    "dev": "nodemon src/index.js"
+  },
+  "keywords": [
+    "Node.js",
+    "API rest"
+  ],
+  "author": "Eliuth Bompart",
+  "license": "MIT",
+  "description": "A simple To-Do List API for beginners to practice CRUD operations, task filtering, due dates, and more. Includes features like task prioritization, user authentication, and basic API documentation.",
+  "dependencies": {
+    "body-parser": "1.20.3",
+    "cors": "2.8.5",
+    "dotenv": "16.4.5",
+    "express": "4.21.1"
+  },
+  "devDependencies": {
+    "nodemon": "3.1.7"
+  }
+}
