@@ -21,6 +21,13 @@ function createTask(title, description, status) {
         // Find the highest ID and set the next ID
         const maxId = tasks.reduce((max, task) => Math.max(max, task.id), 0);
         id = maxId + 1;
+
+        // Check if task is not duplicated
+        const repeatedTask = tasks.some(task => task.title === title);
+        if(repeatedTask){
+            console.log("This task already exists")
+            return false;
+        }
     }
 
     const newTask = {
@@ -37,6 +44,7 @@ function createTask(title, description, status) {
     // Write the updated tasks
     fs.writeFileSync(filePath, JSON.stringify(tasks, null, 2), "utf-8");
     console.log(`Task created with ID: ${id}`);
+    return true;
 }
 
 module.exports = {
