@@ -1,5 +1,6 @@
 const fs = require("fs");
 const path = require("path");
+const {doesExists, readJSONFile} = require("../utils/helpers.util");
 
 function createTask(title, description, status) {
     const created_at = new Date().toISOString();
@@ -7,13 +8,13 @@ function createTask(title, description, status) {
     const filePath = path.join(folderPath, "data.json");
 
     // Check the folder exists
-    if (!fs.existsSync(folderPath)) fs.mkdirSync(folderPath, { recursive: true });
+    if (!doesExists(folderPath)) fs.mkdirSync(folderPath, { recursive: true });
 
     let tasks = [];
     let id = 1;
 
     // Check if the file exists
-    if (fs.existsSync(filePath)) {
+    if (doesExists(filePath)) {
         // Read and parse the file
         const fileContent = fs.readFileSync(filePath, "utf-8");
         tasks = JSON.parse(fileContent);
@@ -47,6 +48,41 @@ function createTask(title, description, status) {
     return true;
 }
 
+function updateTask(id, title, description, status){
+    const updated_at = new Date().toISOString();
+    const folderPath = path.join(__dirname, "../data");
+    const filePath = path.join(folderPath, "data.json");
+
+    if(!doesExists(folderPath)) throw new Error("Folder does not exists");
+    if(!doesExists(filePath)) throw new Error("Data file does not exists");
+
+    const task = readJSONFile(filePath);
+
+    let taskFound = false;
+    const updatedTask = task.map((item) => {
+        if(item.id === id){
+            taskFound = true;
+
+            return {
+                ...item,
+                title: title || item.title,
+                description: description || item.description,
+                status: status || item.status,
+                created_at: item.created_at,
+                updated_at
+            }
+        }
+        return item
+    });
+
+    if(!taskFound) throw new Error(`Task with ID: ${id} not found`);
+
+    fs.writeFileSync(filePath, JSON.stringify(updatedTask, null, 2), 'utf8');
+    console.log(`Task with ID ${id} has been updated successfully`);
+    return true
+}
+
 module.exports = {
     createTask,
+    updateTask
 };

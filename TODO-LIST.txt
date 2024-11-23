@@ -1,7 +1,7 @@
 
 1. **Create Tasks**: Add new tasks with a title and description. <ADD MIDDLEWARE TO ENSUE INPUTS ARE OK> ✅  
 2. **Read Tasks**: View a list of all tasks with their details.  ✅
-3. **Update Tasks**: Edit the title or description of a task.  
+3. **Update Tasks**: Edit the title or description of a task or status.  
 4. **Delete Tasks**: Remove tasks by their unique identifier.  
 5. **Mark Tasks as Completed**: Toggle a "completed" status for tasks.  
 6. **Add Due Date**: Assign a due date to tasks.  
