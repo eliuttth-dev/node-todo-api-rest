@@ -1,7 +1,5 @@
-const fs = require("fs");
 const path = require("path");
-
-const doesExists = (path) => fs.existsSync(path);
+const {doesExists, readJSONFile} = require("../utils/helpers.util");
 
 function readTaskController(req,res){
     const folderPath = path.join(__dirname, "../data");
@@ -18,13 +16,15 @@ function readTaskController(req,res){
             return res.status(404).json({message: "Data file not foud!"});
         }
 
-        const fileContent = fs.readFileSync(filePath, "utf-8");
-        const parseContent = JSON.parse(fileContent);
-        const data = parseContent.map((task)=> (
+        const task = readJSONFile(filePath)
+        const data = task.map((task)=> (
             {
+                id: task.id,
                 title: task.title,
                 description: task.description,
                 status: task.status,
+                created_at: task.created_at,
+                updated_at: task.updated_at
             }
         ));
 
