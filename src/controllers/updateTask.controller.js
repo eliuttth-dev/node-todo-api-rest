@@ -1,4 +1,4 @@
-const { updateTask } = require("../models/tasks.model");
+const { updateTask, deleteTask } = require("../models/tasks.model");
 
 function updateTaskController(req, res){
     const {title, description, status} = req.body;
@@ -6,7 +6,6 @@ function updateTaskController(req, res){
     
     try{
         const task = updateTask(id, title, description, status);
-
         if(!task) return res.status(400).json({message:"This task does not exists"});
     
         return res.status(200).json({message:"Task updated successfully"});

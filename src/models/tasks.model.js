@@ -62,7 +62,6 @@ function updateTask(id, title, description, status){
     const updatedTask = task.map((item) => {
         if(item.id === id){
             taskFound = true;
-
             return {
                 ...item,
                 title: title || item.title,
@@ -76,13 +75,40 @@ function updateTask(id, title, description, status){
     });
 
     if(!taskFound) throw new Error(`Task with ID: ${id} not found`);
-
     fs.writeFileSync(filePath, JSON.stringify(updatedTask, null, 2), 'utf8');
     console.log(`Task with ID ${id} has been updated successfully`);
     return true
 }
 
+function deleteTask(id){
+
+    const folderPath = path.join(__dirname, "../data");
+    const filePath = path.join(folderPath, "data.json");
+
+    if(!doesExists(folderPath)) throw new Error("Folder does not exists");
+    if(!doesExists(filePath)) throw new Error("Data file does not exists");
+
+    const task = readJSONFile(filePath);
+
+    let taskFound = false;
+
+    const toDelete = task.map((item) => {
+        if(item.id === id){
+            taskFound = true;
+            return delete item.id;
+
+        }
+        return item;
+    })
+    if(!taskFound) throw new Error(`Task with ID: ${id} not found`);
+
+    fs.writeFileSync(filePath, JSON.stringify(toDelete, null, 2), "utf-8");
+    console.log("Task deleted");
+    return true;
+}
+
 module.exports = {
     createTask,
-    updateTask
+    updateTask,
+    deleteTask
 };
