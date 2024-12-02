@@ -48,6 +48,40 @@ function createTask(title, description, status) {
     return true;
 }
 
+function markAsCompleted(id, status){
+  const updated_at = new Date().toISOString();
+  const folderPath = path.join(__dirname, "../data");
+  const filePath = path.join(folderPath, "data.json");
+
+  if(!doesExists(folderPath)) throw new Error("Folder does not exists");
+  if(!doesExists(filePath)) throw new Error("Data file does not exists");
+
+  const task = readJSONFile(filePath);
+  console.log(filePath, folderPath)
+  let taskFound = false;
+
+  const updateStatus = task.map((item) => {
+    if(item.id === id) {
+      taskFound = true;
+      return {
+        ...item,
+        title: item.title,
+        description: item.description,
+        status: status,
+        created_at: item.create_at,
+        updated_at
+      }
+    }
+    return item
+  });
+
+  if(!taskFound) throw new Error(`Status from task with ID: ${id} not found`);
+  fs.writeFileSync(filePath, JSON.stringify(updateStatus, null, 2), "utf-8");
+  console.log(`Task with ID: ${id} has been updated`);
+  return true;
+}
+
+
 function updateTask(id, title, description, status){
     const updated_at = new Date().toISOString();
     const folderPath = path.join(__dirname, "../data");
@@ -107,8 +141,10 @@ function deleteTask(id){
     return true;
 }
 
+
 module.exports = {
     createTask,
     updateTask,
-    deleteTask
+    deleteTask,
+    markAsCompleted
 };
