@@ -4,8 +4,3 @@
 3. **Update Tasks**: Edit the title or description of a task or status. ✅ 
 4. **Delete Tasks**: Remove tasks by their unique identifier. ✅ 
 5. **Mark Tasks as Completed**: Toggle a "completed" status for tasks. ( DONE )
-6. **Add Due Date**: Assign a due date to tasks.  
-7. **Filter by Completion Status**: Show only completed or pending tasks.  
-8. **Sort by Due Date**: Display tasks in ascending or descending order of due date.  
-9. **Prioritize Tasks**: Add a priority level (e.g., low, medium, high) and filter/sort tasks by priority.  
-10. **Task Categorization**: Assign tasks to categories (e.g., "Work," "Personal").  
